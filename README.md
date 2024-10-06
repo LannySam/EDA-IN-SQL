@@ -18,6 +18,7 @@ The data set was analyzed to solve the follwoing questions
 - how is the vaccination rate compared to death and infection rate?
 
 ## Data Analysis
+Analyzing the number of cases and death accross the continent of Africa of the Covid 19 
 - Viewing the Whole dataset
   ``` SQL
   -- Viewing the whole dataset
@@ -75,13 +76,12 @@ The data set was analyzed to solve the follwoing questions
   ```SQL
   -- Calculating the total numbers of death and caese
   -- The death to case percent
-  SELECT
-		--DATE,
-		SUM(new_cases) as Sum_cases,
-		SUM(new_deaths) as sum_deaths,
-		SUM(new_deaths)/nullif (SUM(new_cases),0)*100 as DeathPercentage
+  SELECT --DATE,
+	SUM(new_cases) as Sum_cases,
+	SUM(new_deaths) as sum_deaths,
+	SUM(new_deaths)/nullif (SUM(new_cases),0)*100 as DeathPercentage
   FROM PortfolioProject..CovidDeath
-  WHERE continent is not null
+  WHERE continent = 'Africa'
   --GROUP BY date
   ORDER BY 1,2
   ```
