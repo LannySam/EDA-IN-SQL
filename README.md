@@ -46,7 +46,7 @@ The data set was analyzed to solve the follwoing questions
   ```SQL
   -- Total Cases vs Total Deaths
   -- Shows the percentage of death in relation to the number of cases
-  SELECT continent, location, DATE, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathperCasesPercent
+  SELECT continent, location, DATE, total_cases, total_deaths, (total_deaths/total_cases)*100 AS DeathperCasesPercent
   FROM PortfolioProject.dbo.CovidDeath
   WHERE continent = 'Africa'
   ORDER BY 2,3
@@ -54,9 +54,9 @@ The data set was analyzed to solve the follwoing questions
 - Infection Rate per Countries
   ```SQL
   -- Countries with Highest infection rate compared to population
-  -- This compared the rate of infection to the population of eah country
-  SELECT location, Max(total_cases) As Infected_populace,	population,
-    Max((total_cases/population))*100 as PercentPopulationInfected
+  -- This compared the rate of infection to the population of each country
+  SELECT location, MAX(total_cases) AS Infected_populace,	population,
+    MAX((total_cases/population))*100 AS PercentPopulationInfected
   FROM PortfolioProject..CovidDeath
   GROUP BY location, population
   ORDER BY PercentPopulationInfected Desc
@@ -66,7 +66,7 @@ The data set was analyzed to solve the follwoing questions
   -- Countries with highest death count per population
   --note this is when the continent is not null
   SELECT location,
-		Max(total_deaths) As TotalDeathCount		
+		MAX(total_deaths) AS TotalDeathCount		
   FROM PortfolioProject..CovidDeath
   WHERE continent = 'Africa'
   GROUP BY location
@@ -77,9 +77,9 @@ The data set was analyzed to solve the follwoing questions
   -- Calculating the total numbers of death and caese
   -- The death to case percent
   SELECT --DATE,
-	SUM(new_cases) as Sum_cases,
-	SUM(new_deaths) as sum_deaths,
-	SUM(new_deaths)/nullif (SUM(new_cases),0)*100 as DeathPercentage
+	SUM(new_cases) AS Sum_cases,
+	SUM(new_deaths) AS sum_deaths,
+	SUM(new_deaths)/nullif (SUM(new_cases),0)*100 AS DeathPercentage
   FROM PortfolioProject..CovidDeath
   WHERE continent = 'Africa'
   --GROUP BY date
@@ -95,9 +95,9 @@ The data set was analyzed to solve the follwoing questions
 	SUM(Convert(bigint, vac.new_vaccinations)) OVER (Partition by dea.location Order by dea.location, dea.date) AS sum_daily_new_vaccinations
   FROM PortfolioProject..CovidDeath dea
   JOIN PortfolioProject..CovidVaccination vac
-	on dea.location = vac.location
-	and dea.date = vac.date
-  WHERE dea.continent = = 'Africa'
+	ON dea.location = vac.location
+	AND dea.date = vac.date
+  WHERE dea.continent = 'Africa'
   ORDER BY 2,3
   ```
 - Using CTE to calculate vaccination percent to Population
@@ -110,8 +110,8 @@ The data set was analyzed to solve the follwoing questions
   	SUM(Convert(bigint, vac.new_vaccinations)) OVER (Partition by dea.location Order by dea.location, dea.date) AS sum_daily_new_vaccinations
   FROM PortfolioProject..CovidDeath dea
   JOIN PortfolioProject..CovidVaccination vac
-	on dea.location = vac.location
-	and dea.date = vac.date
+	ON dea.location = vac.location
+	AND dea.date = vac.date
   WHERE dea.continent = 'Africa'
   )
   SELECT *, (sum_daily_new_vaccinations/population)*100 AS PopulanceVaccinatedPercent
