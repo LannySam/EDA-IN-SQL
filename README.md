@@ -60,4 +60,28 @@ The data set was analyzed to solve the follwoing questions
   GROUP BY location, population
   ORDER BY PercentPopulationInfected Desc
   ```
-- 
+- Death Count per Countries
+  ```SQL
+  -- Countries with highest death count per population
+  --note this is when the continent is not null
+  SELECT location,
+		Max(total_deaths) As TotalDeathCount		
+  FROM PortfolioProject..CovidDeath
+  WHERE continent = 'Africa'
+  GROUP BY location
+  ORDER BY TotalDeathCount Desc
+  ```
+- Total cases and death in the Continent of Africa
+  ```SQL
+  -- Calculating the total numbers of death and caese
+  -- The death to case percent
+  SELECT
+		--DATE,
+		SUM(new_cases) as Sum_cases,
+		SUM(new_deaths) as sum_deaths,
+		SUM(new_deaths)/nullif (SUM(new_cases),0)*100 as DeathPercentage
+  FROM PortfolioProject..CovidDeath
+  WHERE continent is not null
+  --GROUP BY date
+  ORDER BY 1,2
+  ```
