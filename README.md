@@ -87,19 +87,19 @@ The data set was analyzed to solve the follwoing questions
   ```
 2. The second part of the analysis include analyzing the CovidVaccination table alog with CovidDeath tables, using *Joins*, *CTE* and *Temptables*.
 - Population Vs Vaccination
-```SQL
--- Joining the Vaccination table with death table
--- Total Population vs Vaccination
--- using partition by to sum the new_vaccinations daily
-SELECT dea.continent, dea.location,dea.date, dea.population, vac.new_vaccinations,
+  ```SQL
+  -- Joining the Vaccination table with death table
+  -- Total Population vs Vaccination
+  -- using partition by to sum the new_vaccinations daily
+  SELECT dea.continent, dea.location,dea.date, dea.population, vac.new_vaccinations,
 	SUM(Convert(bigint, vac.new_vaccinations)) OVER (Partition by dea.location Order by dea.location, dea.date) AS sum_daily_new_vaccinations
-FROM PortfolioProject..CovidDeath dea
-JOIN PortfolioProject..CovidVaccination vac
+  FROM PortfolioProject..CovidDeath dea
+  JOIN PortfolioProject..CovidVaccination vac
 	on dea.location = vac.location
 	and dea.date = vac.date
-WHERE dea.continent = = 'Africa'
-ORDER BY 2,3
-```
+  WHERE dea.continent = = 'Africa'
+  ORDER BY 2,3
+  ```
 - Using CTE to calculate vaccination percent to Population
   ```SQL
   -- CTE
