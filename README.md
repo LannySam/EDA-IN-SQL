@@ -36,8 +36,28 @@ The data set was analyzed to solve the follwoing questions
   ``` SQL
   -- Total Cases vs Population
   -- Showing the percentage of the population that was infected with Covid
-  SELECT continent,location,DATE, population,total_cases,(total_cases/population)*100 AS caseperPopulationPercent
+  SELECT continent, location, DATE, population, total_cases, (total_cases/population)*100 AS caseperPopulationPercent
   FROM PortfolioProject..CovidDeath
   WHERE continent = 'Africa'
   ORDER BY 2,3
   ```
+- Cases Vs Death
+  ```SQL
+  -- Total Cases vs Total Deaths
+  -- Shows the percentage of death in relation to the number of cases
+  SELECT continent, location, DATE, total_cases, total_deaths, (total_deaths/total_cases)*100 as DeathperCasesPercent
+  FROM PortfolioProject.dbo.CovidDeath
+  WHERE continent = 'Africa'
+  ORDER BY 2,3
+  ```
+- Infection Rate per Countries
+  ```SQL
+  -- Countries with Highest infection rate compared to population
+  -- This compared the rate of infection to the population of eah country
+  SELECT location, Max(total_cases) As Infected_populace,	population,
+    Max((total_cases/population))*100 as PercentPopulationInfected
+  FROM PortfolioProject..CovidDeath
+  GROUP BY location, population
+  ORDER BY PercentPopulationInfected Desc
+  ```
+- 
