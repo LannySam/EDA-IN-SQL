@@ -118,3 +118,57 @@ The data set was analyzed to solve the follwoing questions
   FROM POPvsVAC
   ORDER BY 2,3
   ```
+--TEMP TABLE
+   ```SQL
+   -- Creating a temporary table for calculations
+   CREATE TABLE #PercentPopulationVaccinated
+   (
+    Continent nvarchar(255),
+    Location nvarchar(255),
+    Date datetime,
+    Population numeric,
+    New_vaccinations numeric,
+    sum_daily_new_vaccinations numeric
+    );
+
+    INSERT INTO #PercentPopulationVaccinated
+    SELECT dea.continent, dea.location,dea.date, dea.population, vac.new_vaccinations,
+    SUM(Convert(bigint, vac.new_vaccinations)) OVER (Partition by dea.location Order by dea.location, dea.date) AS sum_daily_new_vaccinations
+    FROM PortfolioProject..CovidDeath dea
+    JOIN PortfolioProject..CovidVaccination vac
+	ON dea.location = vac.location
+	AND dea.date = vac.date
+    WHERE dea.continent = 'Africa';
+
+    SELECT *, (sum_daily_new_vaccinations/population)*100
+    FROM #PercentPopulationVaccinated
+    ORDER BY 2,3
+```
+--CREATING VIEW
+	```SQL
+	--vaccinated percent of the population
+	CREATE VIEW PercentPopulationVaccinated AS
+	SELECT dea.continent, dea.location,dea.date, dea.population, vac.new_vaccinations,
+	SUM(Convert(bigint, vac.new_vaccinations)) OVER (Partition by dea.location Order by dea.location, dea.date) AS sum_daily_new_vaccinations
+	FROM PortfolioProject..CovidDeath dea
+	JOIN PortfolioProject..CovidVaccination vac
+		ON dea.location = vac.location
+		AND dea.date = vac.date
+	WHERE dea.continent = 'Africa';
+	
+	SELECT *
+	FROM PercentPopulationVaccinated
+	```
+
+--AfricaDeathPerCasesPercent
+	```SQL
+	CREATE ViIEW AfricaDeathPerCasesPercent AS
+	SELECT continent,
+		location,
+			DATE,
+			total_cases,
+			total_deaths,
+			(total_deaths/total_cases)*100 as DeathperCasesPercent
+	FROM PortfolioProject.dbo.CovidDeath
+	WHERE continent = 'Africa'
+	```
