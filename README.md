@@ -155,10 +155,10 @@ The data set was analyzed to solve the follwoing questions
   JOIN PortfolioProject..CovidVaccination vac
 	ON dea.location = vac.location
 	AND dea.date = vac.date
-  WHERE dea.continent = 'Africa';
+  WHERE dea.continent = 'Africa'
 	
   SELECT *
-  FROM PercentPopulationVaccinated
+  FROM PercentPopulationVaccinated;
   ```
 
   ```SQL
@@ -171,5 +171,5 @@ The data set was analyzed to solve the follwoing questions
 	total_deaths,
 	(total_deaths/total_cases)*100 as DeathperCasesPercent
   FROM PortfolioProject.dbo.CovidDeath
-  WHERE continent = 'Africa'
+  WHERE continent = 'Africa';
   ```
