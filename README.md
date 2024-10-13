@@ -74,7 +74,7 @@ The data set was analyzed to solve the follwoing questions
   ```
 - Total cases and death in the Continent of Africa
   ```SQL
-  -- Calculating the total numbers of death and caese
+  -- Calculating the total numbers of death and case
   -- The death to case percent
   SELECT --DATE,
 	SUM(new_cases) AS Sum_cases,
