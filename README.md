@@ -172,5 +172,9 @@ The data set was analyzed to solve the follwoing questions
     FROM PortfolioProject.dbo.CovidDeath
     WHERE continent = 'Africa';
 ```
-- 
+
 ## Result
+During the EDA of the dataset, the following results was obsevered;
+1. 
+![TOP_10](https://github.com/user-attachments/assets/afd3bb13-6b8c-47a8-83e7-70e4752a1e14)
+
