@@ -1,4 +1,4 @@
-# EDA_Covid
+# EXPLORATORY DATA ANALYSIS IN SQL
 ## Project Objective
 This project aim to perform an Exploratory Data Analysis into the COVID 19 dataset with a focal point on the Africa Continent. 
 ## Dataset
