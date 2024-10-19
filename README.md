@@ -15,7 +15,7 @@ The data set was analyzed to solve the follwoing questions
 - What is the total number of cases recorded?
 - What is the percentage of death to population?
 - What is the infection rate in each country compare to population?
-- how is the vaccination rate compared to death and infection rate?
+- How is the vaccination rate compared to death and infection rate?
 
 ## Data Analysis
 1. The first part of the analysis involve analyzing the number of cases and death accross the continent of Africa. 
@@ -119,7 +119,7 @@ The data set was analyzed to solve the follwoing questions
    ORDER BY 2,3
    ```
 - Using TEMP TABLE
-    ```SQL
+```SQL
     -- Creating a temporary table for calculations
     CREATE TABLE #PercentPopulationVaccinated
     (
@@ -146,7 +146,7 @@ The data set was analyzed to solve the follwoing questions
 ```
 
 - CREATING VIEW
-    ```SQL
+```SQL
     --vaccinated percent of the population
     CREATE VIEW PercentPopulationVaccinated AS
     SELECT dea.continent, dea.location,dea.date, dea.population, vac.new_vaccinations,
@@ -159,9 +159,8 @@ The data set was analyzed to solve the follwoing questions
 	
     SELECT *
     FROM PercentPopulationVaccinated;
-    ```
-
-    ```SQL
+    
+   
     --AfricaDeathPerCasesPercent
     CREATE VIEW AfricaDeathPerCasesPercent AS
     SELECT continent,
@@ -172,4 +171,6 @@ The data set was analyzed to solve the follwoing questions
 	(total_deaths/total_cases)*100 as DeathperCasesPercent
     FROM PortfolioProject.dbo.CovidDeath
     WHERE continent = 'Africa';
-    ```
+```
+- 
+## Result
