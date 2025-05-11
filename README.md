@@ -85,7 +85,7 @@ The data set was analyzed to solve the follwoing questions
   --GROUP BY date
   ORDER BY 1,2
   ```
-2. The second part of the analysis include analyzing the CovidVaccination table alog with CovidDeath tables, using *Joins*, *CTE*, *views* and *Temptables*.
+2. The second part of the analysis include analyzing the CovidVaccination table and CovidDeath tables, using *Joins*, *CTE*, *views* and *Temptables*.
 - Population Vs Vaccination
   ```SQL
   -- Joining the Vaccination table with death table
